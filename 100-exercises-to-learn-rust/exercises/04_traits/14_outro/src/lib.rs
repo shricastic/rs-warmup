@@ -22,18 +22,6 @@ impl SaturatingU16 {
     }
 }
 
-impl PartialEq<SaturatingU16> for u16 {
-    fn eq(&self, other: &SaturatingU16) -> bool {
-        *self == other.value
-    }
-}
-
-impl PartialEq<u16> for SaturatingU16 {
-    fn eq(&self, other: &u16) -> bool {
-        self.value == *other
-    }
-}
-
 impl From<u8> for SaturatingU16 {
     fn from(value: u8) -> Self {
         SaturatingU16 {
@@ -101,5 +89,17 @@ impl Add<&u16> for SaturatingU16 {
     type Output = SaturatingU16;
     fn add(self, rhs: &u16) -> Self::Output {
         SaturatingU16::new(self.value.saturating_add(*rhs))
+    }
+}
+
+impl PartialEq<SaturatingU16> for u16 {
+    fn eq(&self, other: &SaturatingU16) -> bool {
+        *self == other.value
+    }
+}
+
+impl PartialEq<u16> for SaturatingU16 {
+    fn eq(&self, other: &u16) -> bool {
+        self.value == *other
     }
 }
