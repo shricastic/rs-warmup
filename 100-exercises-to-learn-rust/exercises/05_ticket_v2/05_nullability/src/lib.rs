@@ -15,7 +15,7 @@ enum Status {
 }
 
 impl Ticket {
-    pub fn new(title: String, description: String, status: Status) -> Ticket {
+    pub fn new(title: String, description: String, status: Status) -> Self {
         if title.is_empty() {
             panic!("Title cannot be empty");
         }
@@ -36,7 +36,11 @@ impl Ticket {
         }
     }
     pub fn assigned_to(&self) -> Option<&String> {
-        todo!()
+        if let Status::InProgress { assigned_to } = &self.status {
+            Some(assigned_to)
+        } else {
+            None
+        }
     }
 }
 
